@@ -1,25 +1,50 @@
 :root {
+    --clr-bg: #f9f9fb;
+    --clr-container: #ffffff;
+    --clr-accent: #00b894;
+    --clr-text: #222831;
+    --clr-muted: #777;
+    --clr-shadow: rgba(0, 0, 0, 0.08);
     --rad: 10px;
     --gap: clamp(1.5cqw, 3cqi, 2cqw);
     --pad: clamp(1rem, 3cqi, 2cqw);
 }
 
 @container Scroll (max-width: 768px) {
+    .side-visual{
+        top: 1vh !important;
+   }
     .feature-scroll {
         padding-left: 13cqw;
     }
-
+    .card{
+        height: 250px !important;
+    }
     .feature-container {
         flex-direction: column-reverse !important;
+        align-items: center !important;
+    }
+}
+@container Scroll (min-width: 769px) and (max-width:1200px) {
+   .side-visual{
+        top: 24vh !important;
+   }
+}
+
+@container Scroll (min-width: 1200px) {
+    img {
+        width: 30cqw !important;
     }
 }
 
 body {
-    font-family: monospace;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
     width: 100%;
+    background-color: var(--clr-bg);
 }
 
 .feature-scroll {
@@ -29,6 +54,7 @@ body {
 }
 
 .feature-container {
+    background-color: var(--clr-bg);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -51,8 +77,9 @@ body {
 }
 
 .card {
+    background-color: var(--clr-container);
     width: clamp(200px, 40cqi, 30cqw);
-    height: clamp(300px, 40cqi, 30cqh);
+    height: clamp(350px, 40cqi, 30cqh);
     display: grid;
     grid-template-columns: auto;
     padding: var(--pad);
@@ -67,11 +94,23 @@ body {
     view-timeline-axis: block;
     animation-name: fadeInScroll;
     animation-timeline: --card-scroll;
-    animation-range: entry 10% cover 90%;
+    animation-range: entry 8% cover 92%;
     animation-fill-mode: both;
     animation-duration: 1s;
-
     scroll-snap-align: center;
+}
+
+.card h2 {
+    font-size: clamp(1rem, 3cqi, 2.5cqh);
+    line-height: 1.1;
+    font-weight: 600;
+    color: var(--clr-text);
+}
+
+.card p {
+    font-size: clamp(0.8rem, 2cqi, 1.4rem);
+    line-height: 1.3;
+    color: var(--clr-muted);
 }
 
 .side-visual {
@@ -80,8 +119,9 @@ body {
 }
 
 .side-visual img {
-    width: clamp(240px, 50cqi, 30vw);
-    height: clamp(350px, 60cqi, 70vh);
+    min-height: fit-content;
+    width: clamp(240px, 50cqi, 35vw);
+    height: clamp(300px, 60cqi, 70vh);
     aspect-ratio: 3 / 4;
     border-radius: var(--rad);
 }
